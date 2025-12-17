@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ExpenseTracker.Models.Expense>
+
+<h2>Expenses</h2>
+<a asp-action="Create" class="btn btn-primary mb-2">Add Expense</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var expense in Model)
+        {
+            <tr>
+                <td>@expense.Category</td>
+                <td>@expense.Amount</td>
+                <td>@expense.Date.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@expense.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@expense.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
