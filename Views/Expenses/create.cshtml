@@ -1,28 +1,118 @@
-﻿@model ExpenseTracker.Models.Expense
+﻿
+@model ExpenseTracker.Models.Expense
 
-<h2>Add Expense</h2>
+<div class="row justify-content-center">
 
-<form asp-action="Create" method="post">
-    <div class="mb-2">
-        <label asp-for="Category" class="form-label"></label>
-        <input asp-for="Category" class="form-control" />
-        <span asp-validation-for="Category" class="text-danger"></span>
+    <div class="col-md-7 col-lg-6">
+
+        <div class="mb-4">
+            <h1 class="fw-bold mb-1">Add Expense</h1>
+            <p class="text-muted">
+                Record a new expense to keep track of your spending.
+            </p>
+        </div>
+
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body p-4">
+
+                <form asp-action="Create" method="post">
+
+                    <!-- Category -->
+                    <div class="mb-3">
+
+                        <label asp-for="Category" class="form-label fw-semibold">
+                            Category
+                        </label>
+
+                        <input asp-for="Category"
+                               class="form-control"
+                               placeholder="e.g. Food, Transport, Shopping" />
+
+                        <span asp-validation-for="Category"
+                              class="text-danger small">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Amount -->
+                    <div class="mb-3">
+
+                        <label asp-for="Amount" class="form-label fw-semibold">
+                            Amount
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                Rs.
+                            </span>
+
+                            <input asp-for="Amount"
+                                   class="form-control"
+                                   placeholder="0.00"
+                                   type="number"
+                                   step="0.01"
+                                   min="0" />
+
+                        </div>
+
+                        <span asp-validation-for="Amount"
+                              class="text-danger small">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Date -->
+                    <div class="mb-4">
+
+                        <label asp-for="Date" class="form-label fw-semibold">
+                            Date
+                        </label>
+
+                        <input asp-for="Date"
+                               type="date"
+                               class="form-control" />
+
+                        <span asp-validation-for="Date"
+                              class="text-danger small">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+                    <div class="d-flex gap-2">
+
+                        <button type="submit"
+                                class="btn btn-primary px-4">
+                            Save Expense
+                        </button>
+
+                        <a asp-action="Index"
+                               class="btn btn-outline-secondary px-4">
+                            Cancel
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
     </div>
-    <div class="mb-2">
-        <label asp-for="Amount" class="form-label"></label>
-        <input asp-for="Amount" class="form-control" />
-        <span asp-validation-for="Amount" class="text-danger"></span>
-    </div>
-    <div class="mb-2">
-        <label asp-for="Date" class="form-label"></label>
-        <input asp-for="Date" type="date" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-success">Save</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-</form>
+
+</div>
+
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
